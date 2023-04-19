@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Gradient Background</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-color: #fff;
+        background-image: linear-gradient(to bottom, #9400D3, #FF1493);
+      }
+      button {
+        margin: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="setRandomGradient()">Generate Random Gradient</button>
+    <script>
+      function setRandomGradient() {
+        const color1 = getRandomColor();
+        const color2 = getRandomColor();
+		const directions = ['to top', 'to right', 'to bottom', 'to left', 'to top left', 'to top right', 'to bottom left', 'to bottom right'];
+  		const direction = directions[Math.floor(Math.random() * directions.length)];
+        const gradient = `linear-gradient(${direction}, ${color1}, ${color2})`;
+
+		navigator.clipboard.writeText(gradient);
+		document.body.style.backgroundImage = gradient;
+      }
+
+      function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+    </script>
+  </body>
+</html>
